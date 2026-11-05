@@ -77,6 +77,56 @@ header .score{gap:6px;padding:12px 17px}
 @media(max-width:1100px){header .star{width:27px;height:29px;flex-basis:27px}header .score{gap:4px;padding:10px 12px}}
 @media(max-width:650px){header .star{width:20px;height:22px;flex-basis:20px}header .score{gap:3px;padding:8px 10px}}
 @media(max-width:380px){header .star{width:18px;height:20px;flex-basis:18px}header .score{gap:2px;padding:7px 8px}}
+
+/* Liquid glass: translucent botanical tint, curved highlights and soft depth. */
+.panel{
+ isolation:isolate;
+ background:linear-gradient(135deg,rgba(224,248,205,.16),rgba(26,65,43,.26) 40%,rgba(12,36,26,.54));
+ border:1px solid rgba(238,255,222,.56);
+ border-radius:30px;
+ backdrop-filter:blur(25px) saturate(145%);
+ -webkit-backdrop-filter:blur(25px) saturate(145%);
+ box-shadow:inset 0 1px 1px #ffffffa6,inset 1px 0 1px #f2ffdc55,inset 0 -1px 1px #e0ffdb44,0 22px 55px #071e2044,0 2px 6px #06191033;
+}
+.panel:before{
+ content:"";position:absolute;inset:0;width:auto;height:auto;pointer-events:none;z-index:-1;border-radius:inherit;
+ background:linear-gradient(115deg,#f2ffe020,transparent 30%,transparent 70%,#e2ffce12),linear-gradient(180deg,#0c25172e,#0c25176b);
+ box-shadow:none;
+}
+.panel:after{content:"";position:absolute;pointer-events:none;top:0;left:9%;right:9%;height:1px;background:linear-gradient(90deg,transparent,#f7ffeaee,transparent);border-radius:100%}
+.panel .question-text{text-shadow:0 2px 6px #071a16a6}
+.panel .instruction,.panel .hint,.panel .feedback{color:#f0f6e6;text-shadow:0 1px 4px #071b17b3}
+.panel .eyebrow{color:#e0f6ce}
+.panel input{background:linear-gradient(135deg,#143b2966,#0d251d80);border-color:#ebffda6b;box-shadow:inset 0 2px 8px #061e2433,0 1px 0 #ffffff26;color:#fff}
+.panel input::placeholder{color:#e1ead7}
+.panel .listen,.quiet{
+ background:linear-gradient(135deg,#efffdd29,#c7f4cd0d 45%,#183b2959);
+ border:1px solid #efffe08c;
+ box-shadow:inset 0 1px 0 #ffffff75,inset 0 -1px 0 #c7eac42b,0 5px 16px #10261b26;
+ backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);
+ color:#f8ffef;text-shadow:0 1px 3px #0a291a99;
+}
+.panel .primary{
+ background:linear-gradient(125deg,#ecffd59c,#b7e89b80 45%,#d5f5bb61);
+ color:#142e20;border-color:#f5ffe6bb;
+ box-shadow:inset 0 1px 1px #ffffffd9,inset 0 -2px 3px #43674333,0 7px 20px #10281933;
+ backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.panel .primary.correct{background:linear-gradient(130deg,#c8ffdbcc,#72db9dcc);color:#103e28}
+.panel .primary.wrong{background:linear-gradient(130deg,#ffd8dfeb,#f59dadcc);color:#63152b}
+header .score{
+ background:linear-gradient(135deg,#e4ffdb30,#a7d5ac12 45%,#0b30255c);
+ border-color:#efffe08c;
+ box-shadow:inset 0 1px 1px #ffffff99,inset 0 -1px 1px #c7eac440,0 8px 24px #10261b33;
+ backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);
+}
+.panel .badge{background:#ebffda12;border-color:#f1ffdf66;color:#f4f8df;box-shadow:inset 0 1px #ffffff33}
+.panel .progress{background:#eaffd92e;box-shadow:inset 0 1px 2px #10281933}
+.panel .progress span{background:linear-gradient(90deg,#d0efb8,#fcffd9);box-shadow:0 0 10px #d9ffbb66}
+.quiet:hover,.panel .listen:hover{background-color:#e4ffd51f}
+.panel .primary:hover{background-color:#efffe733}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.panel{background:rgba(28,57,38,.94)}header .score,.quiet{background:rgba(28,57,38,.92)}}
+@media(max-width:650px){.panel{border-radius:24px}}
 </style>
 </head>
 <body>
