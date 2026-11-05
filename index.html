@@ -40,6 +40,12 @@ input{color:#f6faed;background:#112b1c9c;border-color:#c5dc9c66}input::placehold
 #questionTitle{font-size:clamp(22px,2vw,29px);margin-bottom:10px}
 @media(max-width:650px){.question-text{font-size:15px;line-height:1.4;margin-bottom:12px}.panel .instruction{font-size:11px}#questionTitle{font-size:22px}.panel{max-height:calc(100svh - 130px);overflow-y:auto}}
 @media(max-height:700px) and (min-width:651px){.panel{max-height:calc(100svh - 110px);overflow-y:auto}.question-text{font-size:16px;line-height:1.4}}
+
+/* Keep progress and audio controls together on the right. */
+header{justify-content:flex-start}
+.brand{margin-right:auto}
+.score{flex-shrink:0}
+@media(max-width:650px){header{justify-content:flex-end}.brand{flex:1 1 100%;margin-right:0}.score{order:0;padding:6px 10px;gap:3px}.star{font-size:17px}.quiet{flex-shrink:0;padding:8px;font-size:10px}}
 </style>
 </head>
 <body>
