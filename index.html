@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101936">
+<title>Лаборатория чисел · Математический диктант</title>
+<style>
+:root{color-scheme:dark;--cyan:#91eeff;--muted:#b4c6dc;--glass:rgba(12,24,49,.83)}*{box-sizing:border-box}body{margin:0;background:#0d152d;color:#f3f7ff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100svh}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}button:focus-visible,input:focus-visible{outline:3px solid #9aefff;outline-offset:4px}button:disabled{cursor:wait;opacity:.65}.scene,.veil{position:fixed;inset:0}.scene{overflow:hidden;background:radial-gradient(ellipse at 70% 40%,#345075,#10172c)}video{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center;inset:0}#videoWelcome{z-index:0}.reaction{z-index:1;visibility:hidden}.reaction.active{visibility:visible}.veil{pointer-events:none;z-index:2;background:linear-gradient(90deg,rgba(4,12,30,.44),transparent 70%),linear-gradient(180deg,rgba(7,15,35,.72),transparent 25%,transparent 75%,rgba(7,15,35,.25))}header{position:fixed;z-index:3;top:max(24px,env(safe-area-inset-top));left:32px;right:32px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px}.brand-icon{width:42px;height:42px;border:1px solid #8deaff80;border-radius:14px;display:grid;place-items:center;background:#203e5c80;color:var(--cyan);font-size:25px}.eyebrow{color:var(--cyan);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:750}h1{margin:3px 0;font-size:20px;letter-spacing:-.03em}.score{display:flex;gap:5px;padding:12px 18px;border:1px solid #c5e6ff33;border-radius:30px;background:#101d36a8;backdrop-filter:blur(18px)}.star{font-size:22px;color:#a8c3e44d;transition:color .3s,transform .3s}.star.earned{color:#ffe29b;text-shadow:0 0 16px #ffc64d88;transform:scale(1.08)}.quiet{border:1px solid #bfdeff55;color:#eaf7ff;background:#162845a6;border-radius:14px;padding:12px 16px;backdrop-filter:blur(14px);font-size:13px}.panel{position:fixed;z-index:3;left:32px;bottom:max(28px,env(safe-area-inset-bottom));width:36vw;max-width:540px;padding:26px;border:1px solid #b1dcff55;border-radius:26px;background:linear-gradient(135deg,rgba(33,53,83,.89),var(--glass));box-shadow:0 24px 70px #0005,inset 0 1px #fff1;backdrop-filter:blur(24px)}.panel:before{content:"";position:absolute;top:-1px;left:30px;width:90px;height:2px;background:var(--cyan);box-shadow:0 0 16px #86eaff}.panel-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.badge{font-size:10px;letter-spacing:.13em;color:#c4b8ff;border:1px solid #b6a1ff55;border-radius:20px;padding:5px 8px}.progress{height:3px;background:#c7ddff20;border-radius:8px;margin:16px 0 20px;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,#80e6ff,#b49aff);width:0;transition:width .4s}h2{font-size:clamp(22px,2.2vw,32px);line-height:1.15;letter-spacing:-.035em;margin:0 0 12px}.instruction{color:#d0def0;font-size:14px;line-height:1.6;margin:0 0 17px}.listen{width:100%;display:flex;justify-content:center;align-items:center;gap:10px;padding:13px;border:1px solid #8fe5ff66;border-radius:13px;background:#70dbff14;color:#b5f2ff;font-weight:650}.listen svg{width:19px;height:19px}label{display:block;font-size:12px;color:var(--muted);margin:19px 0 8px}input{width:100%;min-width:0;border:1px solid #b6d4f54d;background:#09182b99;border-radius:13px;padding:14px 15px;color:white;font-size:22px;letter-spacing:.08em}input::placeholder{font-size:15px;letter-spacing:0;color:#93a8c0}.hint{font-size:11px;color:var(--muted);margin:8px 0 17px}.primary{width:100%;border:1px solid #cceeff66;border-radius:13px;padding:14px;background:linear-gradient(110deg,#a0eeff,#beb0ff);color:#172442;font-weight:800;box-shadow:0 5px 25px #83dfff18}.primary.correct{background:#8ce8b0;color:#103e28}.primary.wrong{background:#ffabb9;color:#6c1830}.feedback{min-height:22px;font-size:13px;line-height:1.5;margin:12px 0 0;color:#d3e5fa}.feedback.error{color:#ffc0cc}.footer{display:flex;align-items:center;gap:6px;border-top:1px solid #c5e1ff1c;margin-top:14px;padding-top:13px;color:#9db4ce;font-size:10px;letter-spacing:.08em}.dot{width:5px;height:5px;background:#9fe7cc;border-radius:50%;box-shadow:0 0 7px #9fe7cc}#victory{text-align:left}#victory[hidden],#quiz[hidden]{display:none}.trophy{font-size:46px;margin:16px 0}.win-text{color:#d5e2f4;line-height:1.6}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0)}@media(min-width:1700px){.panel{max-width:none}}@media(max-width:1000px){header{left:22px;right:22px;gap:12px}.panel{left:22px;width:43vw;padding:22px}.score{padding:8px 12px;gap:2px}.star{font-size:18px}h1{font-size:17px}}@media(max-width:650px){header{left:14px;right:14px;top:max(14px,env(safe-area-inset-top));flex-wrap:wrap;gap:10px}.brand-icon{width:32px;height:32px;border-radius:10px;font-size:20px}h1{font-size:16px}.eyebrow{font-size:8px}.quiet{padding:10px;font-size:11px}.score{order:3;padding:5px 12px}.star{font-size:17px}.panel{left:14px;bottom:max(14px,env(safe-area-inset-bottom));width:min(360px,calc(100vw - 28px));padding:18px;border-radius:20px}h2{font-size:24px}.instruction{font-size:12px;margin-bottom:12px}.progress{margin:12px 0 14px}label{margin-top:12px}input{padding:10px 12px}.hint{margin-bottom:12px}.primary,.listen{padding:11px}.footer{margin-top:8px;padding-top:8px}video{object-position:65% center}}@media(max-height:620px) and (min-width:651px){header{top:12px}.panel{bottom:12px;padding:16px;width:38vw}h2{font-size:22px}.progress{margin:9px 0}.instruction{font-size:12px;margin-bottom:9px}label{margin-top:10px}input,.primary,.listen{padding:9px}.hint{margin:5px 0 8px}.feedback{margin-top:6px}.footer{display:none}}@media(max-height:560px) and (max-width:650px){body{min-height:720px}.panel{position:absolute;top:150px;bottom:auto}header{position:absolute}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="scene" aria-hidden="true">
+<video id="videoWelcome" src="privet.mp4" autoplay muted loop playsinline preload="auto"></video>
+<video id="videoSuccess" class="reaction" src="ura.mp4" muted playsinline preload="auto"></video>
+<video id="videoOops" class="reaction" src="oops.mp4" muted playsinline preload="auto"></video>
+</div><div class="veil"></div>
+<header>
+<div class="brand"><div class="brand-icon" aria-hidden="true">✧</div><div><div class="eyebrow">Маленькие открытия · 1 класс</div><h1>Лаборатория чисел</h1></div></div>
+<div id="score" class="score" role="img" aria-label="Собрано 0 из 8 звёзд"></div>
+<button id="soundToggle" class="quiet" type="button" aria-pressed="false">♫ Включить звук</button>
+<button id="restart" class="quiet" type="button">↻ Начать заново</button>
+</header>
+<main class="panel" aria-label="Математический диктант">
+<section id="quiz">
+<div class="panel-top"><span id="counter" class="eyebrow">Задание 01 / 08</span><span class="badge">МАТЕМАТИКА</span></div>
+<div class="progress" role="progressbar" aria-label="Пройдено заданий" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0"><span id="progressFill"></span></div>
+<h2 id="questionTitle">Слушай. Думай.<br>Открывай!</h2>
+<p class="instruction">Нажми «Послушать», послушай задание и запиши ответ цифрами.</p>
+<button id="listen" class="listen" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg><span>Послушать</span></button>
+<form id="answerForm" autocomplete="off"><label for="answer">Твой ответ</label><input id="answer" type="text" inputmode="decimal" placeholder="Введи число или несколько чисел" aria-describedby="answerHint feedback" spellcheck="false"><p id="answerHint" class="hint">Несколько чисел пиши через пробел или запятую.</p><button id="check" class="primary" type="submit">Проверить <span aria-hidden="true">→</span></button></form>
+<p id="feedback" class="feedback" role="status" aria-live="polite">Каждое открытие — новая звезда.</p>
+</section>
+<section id="victory" hidden aria-labelledby="winTitle"><div class="eyebrow">Миссия выполнена · 8 / 8</div><div class="trophy" aria-hidden="true">✦ ✦ ✦</div><h2 id="winTitle" tabindex="-1">ПОЗДРАВЛЯЕМ!</h2><p class="win-text">Ты прошёл все испытания и собрал восемь звёзд!</p><button id="playAgain" class="primary" type="button">Играть снова ↻</button></section>
+<div class="footer"><span class="dot"></span> ЛАБОРАТОРИЯ ОТКРЫТА ДЛЯ ОТКРЫТИЙ</div>
+</main>
+<script>
+'use strict';
+const questions = [
+{question:'Запиши цифрами числа от пяти до одного.',answers:['5 4 3 2 1'],correctIndex:0},
+{question:'Запиши число один. Рядом запиши число, которое идёт сразу после него.',answers:['1 2'],correctIndex:0},
+{question:'Запиши число четыре. Рядом запиши число, которое стоит прямо перед ним.',answers:['4 3'],correctIndex:0},
+{question:'Запиши число три. Рядом запиши его соседей: сначала меньшее число, потом большее.',answers:['3 2 4'],correctIndex:0},
+{question:'Какое число получится, если к трём прибавить один?',answers:['4'],correctIndex:0},
+{question:'Какое число получится, если из четырёх вычесть два?',answers:['2'],correctIndex:0},
+{question:'Запиши числа два и пять, оставив между ними место. Впиши туда оба пропущенных числа по порядку.',answers:['2 3 4 5'],correctIndex:0},
+{question:'Я задумала число. Когда я прибавила к нему три, получилось четыре. Какое число я задумала?',answers:['1'],correctIndex:0}
+];
+const $=id=>document.getElementById(id);
+const welcome=$('videoWelcome'),success=$('videoSuccess'),oops=$('videoOops');
+const answer=$('answer'),check=$('check'),listen=$('listen'),feedback=$('feedback');
+let currentQuestion=0,stars=0,isLocked=false,generation=0,reactionCleanup=null,speechGeneration=0;
+let soundEnabled=true,welcomeSoundEnabled=false,isSpeaking=false;
+function applySound(){welcome.muted=!welcomeSoundEnabled||!soundEnabled||isSpeaking;success.muted=!soundEnabled;oops.muted=!soundEnabled;}
+$('soundToggle').addEventListener('click',()=>{
+ if(!welcomeSoundEnabled){welcomeSoundEnabled=true;soundEnabled=true;}else soundEnabled=!soundEnabled;
+ applySound();$('soundToggle').textContent=soundEnabled?'♫ Выключить звук':'♫ Включить звук';$('soundToggle').setAttribute('aria-pressed',String(soundEnabled));
+ if(!isLocked)welcome.play().catch(()=>{});
+});
+applySound();
+function sayStatus(text,error=false){feedback.textContent=text;feedback.classList.toggle('error',error);}
+function cancelSpeech(){isSpeaking=false;applySound();speechGeneration++;if('speechSynthesis' in window)window.speechSynthesis.cancel();listen.querySelector('span').textContent='Послушать';}
+function unlockInterface(){isLocked=false;answer.disabled=false;check.disabled=false;listen.disabled=false;check.classList.remove('correct','wrong');check.innerHTML='Проверить <span aria-hidden="true">→</span>';}
+function updateScore(){ $('score').innerHTML=questions.map((_,i)=>'<span class="star '+(i<stars?'earned':'')+'" aria-hidden="true">★</span>').join('');$('score').setAttribute('aria-label',`Собрано ${stars} из ${questions.length} звёзд`);$('progressFill').style.width=(stars/questions.length*100)+'%';document.querySelector('.progress').setAttribute('aria-valuenow',stars);}
+function showWelcome(){applySound();[success,oops].forEach(v=>{v.pause();v.classList.remove('active');try{v.currentTime=0;}catch{}});welcome.play().catch(()=>{});}
+function renderQuestion(focus=false){$('quiz').hidden=false;$('victory').hidden=true;$('counter').textContent=`Задание ${String(currentQuestion+1).padStart(2,'0')} / 08`;answer.value='';sayStatus('Каждое открытие — новая звезда.');unlockInterface();if(focus)answer.focus({preventScroll:true});}
+function finishGame(){$('quiz').hidden=true;$('victory').hidden=false;unlockInterface();$('winTitle').focus({preventScroll:true});}
+function playReaction(video,onComplete){
+ const token=generation;let completed=false,watchdog;
+ function cleanup(){clearTimeout(watchdog);video.removeEventListener('ended',done);video.removeEventListener('error',failed);video.removeEventListener('loadedmetadata',armWatchdog);if(reactionCleanup===cleanup)reactionCleanup=null;}
+ function done(){if(completed||token!==generation)return;completed=true;cleanup();showWelcome();onComplete();}
+ function failed(){done();}
+ function armWatchdog(){clearTimeout(watchdog);const duration=Number.isFinite(video.duration)&&video.duration>0?video.duration:15;watchdog=setTimeout(done,(duration+5)*1000);}
+ reactionCleanup=cleanup;video.addEventListener('ended',done);video.addEventListener('error',failed);video.addEventListener('loadedmetadata',armWatchdog);showWelcome();video.classList.add('active');welcome.muted=true;armWatchdog();
+ try{video.currentTime=0;const playing=video.play();if(playing)playing.catch(failed);}catch{failed();}
+}
+$('answerForm').addEventListener('submit',event=>{
+ event.preventDefault();if(isLocked||currentQuestion>=questions.length)return;
+ const normalized=answer.value.replace(/[,，\s]+/g,' ').trim();
+ if(!normalized){sayStatus('Сначала запиши свой ответ цифрами.',true);answer.focus();return;}
+ cancelSpeech();isLocked=true;answer.disabled=true;check.disabled=true;listen.disabled=true;
+ const q=questions[currentQuestion];const correct=q.answers.indexOf(normalized)===q.correctIndex;
+ check.classList.add(correct?'correct':'wrong');check.textContent=correct?'Верно! +1 звезда':'Попробуем ещё раз';
+ if(correct){stars++;updateScore();sayStatus('Отлично! Ещё одно открытие!');}
+ else sayStatus('Упс! Попробуй еще раз!',true);
+ playReaction(correct?success:oops,()=>{if(correct){currentQuestion++;if(currentQuestion===questions.length)finishGame();else renderQuestion(true);}else{unlockInterface();answer.focus({preventScroll:true});answer.select();}});
+});
+listen.addEventListener('click',()=>{
+ if(isLocked)return;
+ if(!('speechSynthesis' in window)||!('SpeechSynthesisUtterance' in window)){sayStatus('Озвучивание недоступно в этом браузере. Задание: '+questions[currentQuestion].question);return;}
+ cancelSpeech();const token=speechGeneration;const utterance=new SpeechSynthesisUtterance(questions[currentQuestion].question);utterance.lang='ru-RU';utterance.rate=.83;
+ const voice=window.speechSynthesis.getVoices().find(v=>/^ru(?:-|_)/i.test(v.lang));if(voice)utterance.voice=voice;
+ utterance.onend=()=>{if(token===speechGeneration){isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать ещё раз';}};
+ utterance.onerror=event=>{if(token!==speechGeneration||event.error==='canceled'||event.error==='interrupted')return;isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать ещё раз';sayStatus('Не удалось озвучить. Задание: '+questions[currentQuestion].question);};
+ listen.querySelector('span').textContent='Повторить задание';sayStatus('Слушай внимательно. Кнопка повторит задание.');isSpeaking=true;applySound();window.speechSynthesis.speak(utterance);
+});
+function restart(){generation++;if(reactionCleanup)reactionCleanup();cancelSpeech();showWelcome();currentQuestion=0;stars=0;updateScore();renderQuestion();}
+$('restart').addEventListener('click',restart);$('playAgain').addEventListener('click',restart);
+welcome.addEventListener('error',()=>sayStatus('Фоновое видео недоступно. Диктант продолжает работать.'));
+restart();
+</script>
+</body>
+</html>
