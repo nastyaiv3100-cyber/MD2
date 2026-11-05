@@ -66,6 +66,8 @@ header{justify-content:flex-start}
 .channel-link:hover{box-shadow:0 0 0 3px #d6eaa46b,0 3px 12px #14291855}
 .channel-link:focus-visible{outline:3px solid #eff4b3;outline-offset:4px}
 @media(max-width:650px){.channel-link{width:40px;height:40px;font-size:9px}}
+
+@media(max-width:650px){header .score{gap:2px;padding:6px 9px}header .star{font-size:16px}header .quiet{font-size:9px;padding:8px 6px}}
 </style>
 </head>
 <body>
@@ -76,34 +78,96 @@ header{justify-content:flex-start}
 </div><div class="veil"></div>
 <header>
 <div class="brand"><a class="brand-icon channel-link" href="https://t.me/lesson_play" target="_blank" rel="noopener noreferrer" aria-label="Открыть Telegram-канал Урок на PLAY" title="Урок на PLAY · Telegram"><span aria-hidden="true">PLAY</span><img src="https://t.me/i/userpic/320/lesson_play.jpg" alt="Фото канала Урок на PLAY" referrerpolicy="no-referrer" onerror="this.hidden=true"></a><div><div class="eyebrow">Маленькие открытия · 1 класс</div><h1>Волшебный сад чисел</h1></div></div>
-<div id="score" class="score" role="img" aria-label="Собрано 0 из 8 звёзд"></div>
+<div id="score" class="score" role="img" aria-label="Собрано 0 из 10 звёзд"></div>
 <button id="soundToggle" class="quiet" type="button" aria-pressed="false">♫ Включить звук</button>
 <button id="restart" class="quiet" type="button">↻ Начать заново</button>
 </header>
 <main class="panel" aria-label="Математический диктант">
 <section id="quiz">
-<div class="panel-top"><span id="counter" class="eyebrow">Задание 01 / 08</span><span class="badge">1 КЛАСС</span></div>
-<div class="progress" role="progressbar" aria-label="Пройдено заданий" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0"><span id="progressFill"></span></div>
+<div class="panel-top"><span id="counter" class="eyebrow">Задание 01 / 10</span><span class="badge">1 КЛАСС</span></div>
+<div class="progress" role="progressbar" aria-label="Пройдено заданий" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><span id="progressFill"></span></div>
 <h2 id="questionText" class="question-text"></h2>
 <button id="listen" class="listen" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg><span>Послушать</span></button>
 <p class="instruction">Нажми «Послушать», послушай задание и запиши ответ цифрами.</p>
 <form id="answerForm" autocomplete="off"><label for="answer">Твой ответ</label><input id="answer" type="text" inputmode="decimal" placeholder="Ответ цифрами" aria-describedby="answerHint feedback" spellcheck="false"><p id="answerHint" class="hint">Несколько чисел пиши через пробел или запятую.</p><button id="check" class="primary" type="submit">Проверить <span aria-hidden="true">→</span></button></form>
 <p id="feedback" class="feedback" role="status" aria-live="polite">Каждое открытие — новая звезда.</p>
 </section>
-<section id="victory" hidden aria-labelledby="winTitle"><div class="eyebrow">Все открытия собраны · 8 / 8</div><div class="trophy" aria-hidden="true">✦ ✦ ✦</div><h2 id="winTitle" tabindex="-1">ПОЗДРАВЛЯЕМ!</h2><p class="win-text">Ты прошёл все испытания и собрал восемь звёзд!</p><button id="playAgain" class="primary" type="button">Играть снова ↻</button></section>
+<section id="victory" hidden aria-labelledby="winTitle"><div class="eyebrow">Все открытия собраны · 10 / 10</div><div class="trophy" aria-hidden="true">✦ ✦ ✦</div><h2 id="winTitle" tabindex="-1">ПОЗДРАВЛЯЕМ!</h2><p class="win-text">Ты прошёл все испытания и собрал десять звёзд!</p><button id="playAgain" class="primary" type="button">Играть снова ↻</button></section>
 <div class="footer"><span class="dot"></span> В САДУ РАСТУТ МАЛЕНЬКИЕ ОТКРЫТИЯ</div>
 </main>
 <script>
 'use strict';
 const questions = [
-{question:'Запиши цифрами числа от пяти до одного.',answers:['5 4 3 2 1'],correctIndex:0},
-{question:'Запиши число один. Рядом запиши число, которое идёт сразу после него.',answers:['1 2'],correctIndex:0},
-{question:'Запиши число четыре. Рядом запиши число, которое стоит прямо перед ним.',answers:['4 3'],correctIndex:0},
-{question:'Запиши число три. Рядом запиши его соседей: сначала меньшее число, потом большее.',answers:['3 2 4'],correctIndex:0},
-{question:'Какое число получится, если к трём прибавить один?',answers:['4'],correctIndex:0},
-{question:'Какое число получится, если из четырёх вычесть два?',answers:['2'],correctIndex:0},
-{question:'Запиши числа два и пять, оставив между ними место. Впиши туда оба пропущенных числа по порядку.',answers:['2 3 4 5'],correctIndex:0},
-{question:'Я задумала число. Когда я прибавила к нему три, получилось четыре. Какое число я задумала?',answers:['1'],correctIndex:0}
+  {
+    "question": "Число, предыдущее числу 8, уменьши на 2 единицы.",
+    "answers": [
+      "5"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Число, последующее за числом 6, увеличь на 3 единицы.",
+    "answers": [
+      "10"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "На сколько единиц число 6 меньше числа 9?",
+    "answers": [
+      "3"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "На сколько единиц число 7 больше числа 5?",
+    "answers": [
+      "2"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Запиши все числа меньше числа 9, но больше числа 5.",
+    "answers": [
+      "6 7 8"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Из какого числа нужно вычесть число 2, чтобы получить число 7?",
+    "answers": [
+      "9"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "К какому числу нужно прибавить число 3, чтобы получить число 7?",
+    "answers": [
+      "4"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "В корзине лежало 4 моркови, 3 репки и 2 яблока. Сколько всего штук овощей лежало в корзине?",
+    "answers": [
+      "7"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Число 10 уменьши на 6.",
+    "answers": [
+      "4"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Число 4 увеличь на 5.",
+    "answers": [
+      "9"
+    ],
+    "correctIndex": 0
+  }
 ];
 const $=id=>document.getElementById(id);
 const welcome=$('videoWelcome'),success=$('videoSuccess'),oops=$('videoOops');
@@ -122,7 +186,7 @@ function cancelSpeech(){isSpeaking=false;applySound();speechGeneration++;if('spe
 function unlockInterface(){isLocked=false;answer.disabled=false;check.disabled=false;listen.disabled=false;check.classList.remove('correct','wrong');check.innerHTML='Проверить <span aria-hidden="true">→</span>';}
 function updateScore(){ $('score').innerHTML=questions.map((_,i)=>'<span class="star '+(i<stars?'earned':'')+'" aria-hidden="true">★</span>').join('');$('score').setAttribute('aria-label',`Собрано ${stars} из ${questions.length} звёзд`);$('progressFill').style.width=(stars/questions.length*100)+'%';document.querySelector('.progress').setAttribute('aria-valuenow',stars);}
 function showWelcome(){applySound();[success,oops].forEach(v=>{v.pause();v.classList.remove('active');try{v.currentTime=0;}catch{}});welcome.play().catch(()=>{});}
-function renderQuestion(focus=false){$('quiz').hidden=false;$('victory').hidden=true;$('counter').textContent=`Задание ${String(currentQuestion+1).padStart(2,'0')} / 08`;$('questionText').textContent=questions[currentQuestion].question;answer.value='';sayStatus('Каждое открытие — новая звезда.');unlockInterface();if(focus)answer.focus({preventScroll:true});}
+function renderQuestion(focus=false){$('quiz').hidden=false;$('victory').hidden=true;$('counter').textContent=`Задание ${String(currentQuestion+1).padStart(2,'0')} / ${String(questions.length).padStart(2,'0')}`;$('questionText').textContent=questions[currentQuestion].question;answer.value='';sayStatus('Каждое открытие — новая звезда.');unlockInterface();if(focus)answer.focus({preventScroll:true});}
 function finishGame(){$('quiz').hidden=true;$('victory').hidden=false;unlockInterface();$('winTitle').focus({preventScroll:true});}
 function playReaction(video,onComplete){
  const token=generation;let completed=false,watchdog;
