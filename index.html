@@ -46,6 +46,26 @@ header{justify-content:flex-start}
 .brand{margin-right:auto}
 .score{flex-shrink:0}
 @media(max-width:650px){header{justify-content:flex-end}.brand{flex:1 1 100%;margin-right:0}.score{order:0;padding:6px 10px;gap:3px}.star{font-size:17px}.quiet{flex-shrink:0;padding:8px;font-size:10px}}
+
+/* Compact dictation layout inspired by the supplied example. */
+.panel{padding:25px 28px}
+.panel .question-text{font-size:clamp(22px,1.65vw,30px);font-weight:750;line-height:1.3;letter-spacing:-.025em;margin:0 0 16px}
+.panel .listen{width:auto;display:inline-flex;padding:11px 16px;border-radius:12px;margin-bottom:14px}
+.panel .instruction{margin:0 0 14px;font-size:13px;line-height:1.5}
+#answerForm label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);margin:0}
+#answerForm input{padding:12px 15px;font-size:20px}
+#answerHint{margin:7px 0 10px;font-size:10px}
+#check{padding:12px}
+.panel .feedback{margin-top:8px;min-height:0}
+.panel .feedback:empty{display:none}
+.panel .footer{display:none}
+@media(max-width:650px){.panel{padding:20px}.panel .question-text{font-size:21px}.panel .instruction{font-size:12px}.panel .listen{padding:10px 13px}.panel .progress{margin-bottom:14px}}
+
+.channel-link{position:relative;flex-shrink:0;width:52px;height:52px;border-radius:50%;overflow:hidden;text-decoration:none;background:#e6ecd5;color:#345332;font-size:11px;font-weight:850;box-shadow:0 3px 12px #14291855}
+.channel-link img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.channel-link img[hidden]{display:none}
+.channel-link:hover{box-shadow:0 0 0 3px #d6eaa46b,0 3px 12px #14291855}
+.channel-link:focus-visible{outline:3px solid #eff4b3;outline-offset:4px}
+@media(max-width:650px){.channel-link{width:40px;height:40px;font-size:9px}}
 </style>
 </head>
 <body>
@@ -55,20 +75,19 @@ header{justify-content:flex-start}
 <video id="videoOops" class="reaction" src="oops.mp4" muted playsinline preload="auto"></video>
 </div><div class="veil"></div>
 <header>
-<div class="brand"><div class="brand-icon" aria-hidden="true">✧</div><div><div class="eyebrow">Маленькие открытия · 1 класс</div><h1>Волшебный сад чисел</h1></div></div>
+<div class="brand"><a class="brand-icon channel-link" href="https://t.me/lesson_play" target="_blank" rel="noopener noreferrer" aria-label="Открыть Telegram-канал Урок на PLAY" title="Урок на PLAY · Telegram"><span aria-hidden="true">PLAY</span><img src="https://t.me/i/userpic/320/lesson_play.jpg" alt="Фото канала Урок на PLAY" referrerpolicy="no-referrer" onerror="this.hidden=true"></a><div><div class="eyebrow">Маленькие открытия · 1 класс</div><h1>Волшебный сад чисел</h1></div></div>
 <div id="score" class="score" role="img" aria-label="Собрано 0 из 8 звёзд"></div>
 <button id="soundToggle" class="quiet" type="button" aria-pressed="false">♫ Включить звук</button>
 <button id="restart" class="quiet" type="button">↻ Начать заново</button>
 </header>
 <main class="panel" aria-label="Математический диктант">
 <section id="quiz">
-<div class="panel-top"><span id="counter" class="eyebrow">Задание 01 / 08</span><span class="badge">МАТЕМАТИКА</span></div>
+<div class="panel-top"><span id="counter" class="eyebrow">Задание 01 / 08</span><span class="badge">1 КЛАСС</span></div>
 <div class="progress" role="progressbar" aria-label="Пройдено заданий" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0"><span id="progressFill"></span></div>
-<h2 id="questionTitle">Твоё задание</h2>
-<p id="questionText" class="question-text"></p>
-<p class="instruction">Нажми «Послушать», послушай задание и запиши ответ цифрами.</p>
+<h2 id="questionText" class="question-text"></h2>
 <button id="listen" class="listen" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg><span>Послушать</span></button>
-<form id="answerForm" autocomplete="off"><label for="answer">Твой ответ</label><input id="answer" type="text" inputmode="decimal" placeholder="Введи число или несколько чисел" aria-describedby="answerHint feedback" spellcheck="false"><p id="answerHint" class="hint">Несколько чисел пиши через пробел или запятую.</p><button id="check" class="primary" type="submit">Проверить <span aria-hidden="true">→</span></button></form>
+<p class="instruction">Нажми «Послушать», послушай задание и запиши ответ цифрами.</p>
+<form id="answerForm" autocomplete="off"><label for="answer">Твой ответ</label><input id="answer" type="text" inputmode="decimal" placeholder="Ответ цифрами" aria-describedby="answerHint feedback" spellcheck="false"><p id="answerHint" class="hint">Несколько чисел пиши через пробел или запятую.</p><button id="check" class="primary" type="submit">Проверить <span aria-hidden="true">→</span></button></form>
 <p id="feedback" class="feedback" role="status" aria-live="polite">Каждое открытие — новая звезда.</p>
 </section>
 <section id="victory" hidden aria-labelledby="winTitle"><div class="eyebrow">Все открытия собраны · 8 / 8</div><div class="trophy" aria-hidden="true">✦ ✦ ✦</div><h2 id="winTitle" tabindex="-1">ПОЗДРАВЛЯЕМ!</h2><p class="win-text">Ты прошёл все испытания и собрал восемь звёзд!</p><button id="playAgain" class="primary" type="button">Играть снова ↻</button></section>
