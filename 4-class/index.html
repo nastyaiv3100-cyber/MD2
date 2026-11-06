@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101936">
+<title>Волшебный сад чисел · 4 класс</title>
+<style>
+:root{color-scheme:dark;--cyan:#91eeff;--muted:#b4c6dc;--glass:rgba(12,24,49,.83)}*{box-sizing:border-box}body{margin:0;background:#0d152d;color:#f3f7ff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100svh}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}button:focus-visible,input:focus-visible{outline:3px solid #9aefff;outline-offset:4px}button:disabled{cursor:wait;opacity:.65}.scene,.veil{position:fixed;inset:0}.scene{overflow:hidden;background:radial-gradient(ellipse at 70% 40%,#345075,#10172c)}video{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center;inset:0}#videoWelcome{z-index:0}.reaction{z-index:1;visibility:hidden}.reaction.active{visibility:visible}.veil{pointer-events:none;z-index:2;background:linear-gradient(90deg,rgba(4,12,30,.44),transparent 70%),linear-gradient(180deg,rgba(7,15,35,.72),transparent 25%,transparent 75%,rgba(7,15,35,.25))}header{position:fixed;z-index:3;top:max(24px,env(safe-area-inset-top));left:32px;right:32px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px}.brand-icon{width:42px;height:42px;border:1px solid #8deaff80;border-radius:14px;display:grid;place-items:center;background:#203e5c80;color:var(--cyan);font-size:25px}.eyebrow{color:var(--cyan);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:750}h1{margin:3px 0;font-size:20px;letter-spacing:-.03em}.score{display:flex;gap:5px;padding:12px 18px;border:1px solid #c5e6ff33;border-radius:30px;background:#101d36a8;backdrop-filter:blur(18px)}.star{font-size:22px;color:#a8c3e44d;transition:color .3s,transform .3s}.star.earned{color:#ffe29b;text-shadow:0 0 16px #ffc64d88;transform:scale(1.08)}.quiet{border:1px solid #bfdeff55;color:#eaf7ff;background:#162845a6;border-radius:14px;padding:12px 16px;backdrop-filter:blur(14px);font-size:13px}.panel{position:fixed;z-index:3;left:32px;bottom:max(28px,env(safe-area-inset-bottom));width:36vw;max-width:540px;padding:26px;border:1px solid #b1dcff55;border-radius:26px;background:linear-gradient(135deg,rgba(33,53,83,.89),var(--glass));box-shadow:0 24px 70px #0005,inset 0 1px #fff1;backdrop-filter:blur(24px)}.panel:before{content:"";position:absolute;top:-1px;left:30px;width:90px;height:2px;background:var(--cyan);box-shadow:0 0 16px #86eaff}.panel-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.badge{font-size:10px;letter-spacing:.13em;color:#c4b8ff;border:1px solid #b6a1ff55;border-radius:20px;padding:5px 8px}.progress{height:3px;background:#c7ddff20;border-radius:8px;margin:16px 0 20px;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,#80e6ff,#b49aff);width:0;transition:width .4s}h2{font-size:clamp(22px,2.2vw,32px);line-height:1.15;letter-spacing:-.035em;margin:0 0 12px}.instruction{color:#d0def0;font-size:14px;line-height:1.6;margin:0 0 17px}.listen{width:100%;display:flex;justify-content:center;align-items:center;gap:10px;padding:13px;border:1px solid #8fe5ff66;border-radius:13px;background:#70dbff14;color:#b5f2ff;font-weight:650}.listen svg{width:19px;height:19px}label{display:block;font-size:12px;color:var(--muted);margin:19px 0 8px}input{width:100%;min-width:0;border:1px solid #b6d4f54d;background:#09182b99;border-radius:13px;padding:14px 15px;color:white;font-size:22px;letter-spacing:.08em}input::placeholder{font-size:15px;letter-spacing:0;color:#93a8c0}.hint{font-size:11px;color:var(--muted);margin:8px 0 17px}.primary{width:100%;border:1px solid #cceeff66;border-radius:13px;padding:14px;background:linear-gradient(110deg,#a0eeff,#beb0ff);color:#172442;font-weight:800;box-shadow:0 5px 25px #83dfff18}.primary.correct{background:#8ce8b0;color:#103e28}.primary.wrong{background:#ffabb9;color:#6c1830}.feedback{min-height:22px;font-size:13px;line-height:1.5;margin:12px 0 0;color:#d3e5fa}.feedback.error{color:#ffc0cc}.footer{display:flex;align-items:center;gap:6px;border-top:1px solid #c5e1ff1c;margin-top:14px;padding-top:13px;color:#9db4ce;font-size:10px;letter-spacing:.08em}.dot{width:5px;height:5px;background:#9fe7cc;border-radius:50%;box-shadow:0 0 7px #9fe7cc}#victory{text-align:left}#victory[hidden],#quiz[hidden]{display:none}.trophy{font-size:46px;margin:16px 0}.win-text{color:#d5e2f4;line-height:1.6}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0)}@media(min-width:1700px){.panel{max-width:none}}@media(max-width:1000px){header{left:22px;right:22px;gap:12px}.panel{left:22px;width:43vw;padding:22px}.score{padding:8px 12px;gap:2px}.star{font-size:18px}h1{font-size:17px}}@media(max-width:650px){header{left:14px;right:14px;top:max(14px,env(safe-area-inset-top));flex-wrap:wrap;gap:10px}.brand-icon{width:32px;height:32px;border-radius:10px;font-size:20px}h1{font-size:16px}.eyebrow{font-size:8px}.quiet{padding:10px;font-size:11px}.score{order:3;padding:5px 12px}.star{font-size:17px}.panel{left:14px;bottom:max(14px,env(safe-area-inset-bottom));width:min(360px,calc(100vw - 28px));padding:18px;border-radius:20px}h2{font-size:24px}.instruction{font-size:12px;margin-bottom:12px}.progress{margin:12px 0 14px}label{margin-top:12px}input{padding:10px 12px}.hint{margin-bottom:12px}.primary,.listen{padding:11px}.footer{margin-top:8px;padding-top:8px}video{object-position:65% center}}@media(max-height:620px) and (min-width:651px){header{top:12px}.panel{bottom:12px;padding:16px;width:38vw}h2{font-size:22px}.progress{margin:9px 0}.instruction{font-size:12px;margin-bottom:9px}label{margin-top:10px}input,.primary,.listen{padding:9px}.hint{margin:5px 0 8px}.feedback{margin-top:6px}.footer{display:none}}@media(max-height:560px) and (max-width:650px){body{min-height:720px}.panel{position:absolute;top:150px;bottom:auto}header{position:absolute}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Botanical glass palette and the panel placement from the reference sketch. */
+:root{--cyan:#c0efb5;--muted:#bbcfb3;--glass:rgba(19,43,29,.88)}
+body{background:#12251b;color:#f6faed}
+.scene{background:radial-gradient(ellipse at 55% 45%,#5c7041,#223c28 65%,#102419)}
+video{object-fit:cover;object-position:center bottom}
+.veil{background:linear-gradient(180deg,rgba(12,30,19,.55),transparent 24%,transparent 80%,rgba(12,30,19,.2))}
+.brand-icon{color:#ddf4bc;border-color:#d6ecac66;background:#345038a6}
+.quiet{background:#243e2ed9;border-color:#d4e6aa66;color:#f4f7df}
+.score{background:linear-gradient(150deg,#38513ae6,#182e21eb);border-color:#d9e8ad66;box-shadow:inset 0 1px 1px #f3ffd833,0 8px 24px #07150c44;gap:9px;padding:12px 20px}
+.star{display:inline-block;color:#78917a;font-size:26px;text-shadow:0 1px 0 #36513a,0 2px 0 #243d2c,0 3px 3px #08170b99;filter:drop-shadow(0 2px 2px #07190c66)}
+.star.earned{color:#ffe48a;background:linear-gradient(145deg,#fffbd4 12%,#ffe68c 36%,#eebd45 66%,#fff0a3 85%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 1px 0 #b18b30) drop-shadow(0 2px 0 #8c6923) drop-shadow(0 4px 2px #17230d88) drop-shadow(0 0 8px #f5d26b55);transform:rotate(-7deg) scale(1.12)}
+.panel{left:19%;bottom:8%;width:38%;max-width:740px;padding:28px;border-color:#d5e8ad77;background:linear-gradient(135deg,rgba(64,88,51,.90),rgba(22,49,33,.92));box-shadow:0 24px 65px #0b1d1855,inset 0 1px 1px #f6ffdf44}
+.panel:before{background:#d8efac;box-shadow:0 0 16px #cfeb9b}
+.badge{color:#ebedb9;border-color:#d6e6a766;background:#b8d0840d}
+.progress{background:#dbeac329}.progress span{background:linear-gradient(90deg,#a9d682,#e9e9a4)}
+.instruction,.win-text{color:#e1ead5}
+.listen{color:#eff5cf;background:#bbd28d1c;border-color:#d0e6a777}
+input{color:#f6faed;background:#112b1c9c;border-color:#c5dc9c66}input::placeholder{color:#b6c8aa}
+.primary{background:linear-gradient(110deg,#d3edae,#a7d389);color:#203b26;border-color:#ebf7c399;box-shadow:inset 0 1px #f8ffe599,0 6px 20px #11271344}
+.footer{color:#b8cfa9;border-color:#d4e6b32b}.dot{background:#d6eaa4;box-shadow:0 0 7px #d6eaa4}
+.feedback{color:#e3edd7}button:focus-visible,input:focus-visible{outline-color:#eff4b3}
+@media(min-width:1700px){.panel{max-width:740px}}
+@media(max-width:1100px){.panel{left:12%;width:44%;padding:22px}.score{gap:4px;padding:9px 13px}.star{font-size:22px}}
+@media(max-width:760px){.panel{left:5%;width:48%;bottom:4%;padding:18px}.score{gap:3px}.star{font-size:19px}}
+@media(max-width:650px){video{object-fit:cover;object-position:85% bottom}.panel{left:14px;bottom:max(14px,env(safe-area-inset-bottom));width:min(360px,calc(100vw - 28px));padding:18px}.score{padding:6px 12px;gap:5px}.star{font-size:19px}header{gap:8px}.quiet{padding:9px;font-size:10px}.brand{gap:7px}h1{font-size:14px}.brand .eyebrow{font-size:7px}}
+@media(max-height:620px) and (min-width:651px){.panel{left:19%;bottom:4%;padding:16px;width:38%}}
+@media(max-height:560px) and (max-width:650px){.panel{top:150px;bottom:auto}}
+
+.question-text{font-size:clamp(17px,1.25vw,22px);font-weight:550;line-height:1.5;color:#f6fae9;margin:0 0 16px}
+#questionTitle{font-size:clamp(22px,2vw,29px);margin-bottom:10px}
+@media(max-width:650px){.question-text{font-size:15px;line-height:1.4;margin-bottom:12px}.panel .instruction{font-size:11px}#questionTitle{font-size:22px}.panel{max-height:calc(100svh - 130px);overflow-y:auto}}
+@media(max-height:700px) and (min-width:651px){.panel{max-height:calc(100svh - 110px);overflow-y:auto}.question-text{font-size:16px;line-height:1.4}}
+
+/* Keep progress and audio controls together on the right. */
+header{justify-content:flex-start}
+.brand{margin-right:auto}
+.score{flex-shrink:0}
+@media(max-width:650px){header{justify-content:flex-end}.brand{flex:1 1 100%;margin-right:0}.score{order:0;padding:6px 10px;gap:3px}.star{font-size:17px}.quiet{flex-shrink:0;padding:8px;font-size:10px}}
+
+/* Compact dictation layout inspired by the supplied example. */
+.panel{padding:25px 28px}
+.panel .question-text{font-size:clamp(22px,1.65vw,30px);font-weight:750;line-height:1.3;letter-spacing:-.025em;margin:0 0 16px}
+.panel .listen{width:auto;display:inline-flex;padding:11px 16px;border-radius:12px;margin-bottom:14px}
+.panel .instruction{margin:0 0 14px;font-size:13px;line-height:1.5}
+#answerForm label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);margin:0}
+#answerForm input{padding:12px 15px;font-size:20px}
+#answerHint{margin:7px 0 10px;font-size:10px}
+#check{padding:12px}
+.panel .feedback{margin-top:8px;min-height:0}
+.panel .feedback:empty{display:none}
+.panel .footer{display:none}
+@media(max-width:650px){.panel{padding:20px}.panel .question-text{font-size:21px}.panel .instruction{font-size:12px}.panel .listen{padding:10px 13px}.panel .progress{margin-bottom:14px}}
+
+.channel-link{position:relative;flex-shrink:0;width:52px;height:52px;border-radius:50%;overflow:hidden;text-decoration:none;background:#e6ecd5;color:#345332;font-size:11px;font-weight:850;box-shadow:0 3px 12px #14291855}
+.channel-link img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.channel-link img[hidden]{display:none}
+.channel-link:hover{box-shadow:0 0 0 3px #d6eaa46b,0 3px 12px #14291855}
+.channel-link:focus-visible{outline:3px solid #eff4b3;outline-offset:4px}
+@media(max-width:650px){.channel-link{width:40px;height:40px;font-size:9px}}
+
+@media(max-width:650px){header .score{gap:2px;padding:6px 9px}header .star{font-size:16px}header .quiet{font-size:9px;padding:8px 6px}}
+
+/* Sculpted metallic stars: raised sides, ten facets and polished ridges. */
+header .star{display:block;width:34px;height:36px;flex:0 0 34px;color:inherit;background:none;-webkit-text-fill-color:initial;text-shadow:none;transform:rotate(-6deg);filter:drop-shadow(1px 4px 2px #07190dd9)}
+header .star svg{display:block;width:100%;height:100%;overflow:visible}
+header .star.earned{background:none;-webkit-text-fill-color:initial;transform:rotate(-6deg);filter:drop-shadow(1px 4px 2px #10200cbb) drop-shadow(0 0 6px #f6c84c55)}
+header .score{gap:6px;padding:12px 17px}
+@media(max-width:1100px){header .star{width:27px;height:29px;flex-basis:27px}header .score{gap:4px;padding:10px 12px}}
+@media(max-width:650px){header .star{width:20px;height:22px;flex-basis:20px}header .score{gap:3px;padding:8px 10px}}
+@media(max-width:380px){header .star{width:18px;height:20px;flex-basis:18px}header .score{gap:2px;padding:7px 8px}}
+
+/* Liquid glass: translucent botanical tint, curved highlights and soft depth. */
+.panel{
+ isolation:isolate;
+ background:linear-gradient(135deg,rgba(224,248,205,.16),rgba(26,65,43,.26) 40%,rgba(12,36,26,.54));
+ border:1px solid rgba(238,255,222,.56);
+ border-radius:30px;
+ backdrop-filter:blur(25px) saturate(145%);
+ -webkit-backdrop-filter:blur(25px) saturate(145%);
+ box-shadow:inset 0 1px 1px #ffffffa6,inset 1px 0 1px #f2ffdc55,inset 0 -1px 1px #e0ffdb44,0 22px 55px #071e2044,0 2px 6px #06191033;
+}
+.panel:before{
+ content:"";position:absolute;inset:0;width:auto;height:auto;pointer-events:none;z-index:-1;border-radius:inherit;
+ background:linear-gradient(115deg,#f2ffe020,transparent 30%,transparent 70%,#e2ffce12),linear-gradient(180deg,#0c25172e,#0c25176b);
+ box-shadow:none;
+}
+.panel:after{content:"";position:absolute;pointer-events:none;top:0;left:9%;right:9%;height:1px;background:linear-gradient(90deg,transparent,#f7ffeaee,transparent);border-radius:100%}
+.panel .question-text{text-shadow:0 2px 6px #071a16a6}
+.panel .instruction,.panel .hint,.panel .feedback{color:#f0f6e6;text-shadow:0 1px 4px #071b17b3}
+.panel .eyebrow{color:#e0f6ce}
+.panel input{background:linear-gradient(135deg,#143b2966,#0d251d80);border-color:#ebffda6b;box-shadow:inset 0 2px 8px #061e2433,0 1px 0 #ffffff26;color:#fff}
+.panel input::placeholder{color:#e1ead7}
+.panel .listen,.quiet{
+ background:linear-gradient(135deg,#efffdd29,#c7f4cd0d 45%,#183b2959);
+ border:1px solid #efffe08c;
+ box-shadow:inset 0 1px 0 #ffffff75,inset 0 -1px 0 #c7eac42b,0 5px 16px #10261b26;
+ backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);
+ color:#f8ffef;text-shadow:0 1px 3px #0a291a99;
+}
+.panel .primary{
+ background:linear-gradient(125deg,#ecffd59c,#b7e89b80 45%,#d5f5bb61);
+ color:#142e20;border-color:#f5ffe6bb;
+ box-shadow:inset 0 1px 1px #ffffffd9,inset 0 -2px 3px #43674333,0 7px 20px #10281933;
+ backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.panel .primary.correct{background:linear-gradient(130deg,#c8ffdbcc,#72db9dcc);color:#103e28}
+.panel .primary.wrong{background:linear-gradient(130deg,#ffd8dfeb,#f59dadcc);color:#63152b}
+header .score{
+ background:linear-gradient(135deg,#e4ffdb30,#a7d5ac12 45%,#0b30255c);
+ border-color:#efffe08c;
+ box-shadow:inset 0 1px 1px #ffffff99,inset 0 -1px 1px #c7eac440,0 8px 24px #10261b33;
+ backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);
+}
+.panel .badge{background:#ebffda12;border-color:#f1ffdf66;color:#f4f8df;box-shadow:inset 0 1px #ffffff33}
+.panel .progress{background:#eaffd92e;box-shadow:inset 0 1px 2px #10281933}
+.panel .progress span{background:linear-gradient(90deg,#d0efb8,#fcffd9);box-shadow:0 0 10px #d9ffbb66}
+.quiet:hover,.panel .listen:hover{background-color:#e4ffd51f}
+.panel .primary:hover{background-color:#efffe733}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.panel{background:rgba(28,57,38,.94)}header .score,.quiet{background:rgba(28,57,38,.92)}}
+@media(max-width:650px){.panel{border-radius:24px}}
+
+.grade-nav{position:fixed;top:100px;left:32px;z-index:4;display:flex;gap:7px;padding:5px;border:1px solid #efffe066;border-radius:18px;background:#18372966;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.grade-nav a{padding:8px 14px;border-radius:12px;color:#f5ffe9;text-decoration:none;font-size:13px;font-weight:700}
+.grade-nav a[aria-current="page"]{background:linear-gradient(135deg,#eeffd7d9,#b3d993bd);color:#203d29;box-shadow:inset 0 1px #ffffffaa}
+.grade-nav a:focus-visible{outline:3px solid #eff4b3;outline-offset:2px}
+@media(max-width:650px){.grade-nav{top:155px;left:14px}.grade-nav a{font-size:11px;padding:6px 11px}.brand h1{font-size:13px}.panel{max-height:calc(100svh - 215px)}}
+@media(max-height:560px) and (max-width:650px){.grade-nav{position:absolute}.panel{top:210px;max-height:none}}
+</style>
+</head>
+<body>
+<div class="scene" aria-hidden="true">
+<video id="videoWelcome" src="../privet.mp4" autoplay muted loop playsinline preload="auto"></video>
+<video id="videoSuccess" class="reaction" src="../ura.mp4" muted playsinline preload="auto"></video>
+<video id="videoOops" class="reaction" src="../oops.mp4" muted playsinline preload="auto"></video>
+</div><div class="veil"></div>
+<header>
+<div class="brand"><a class="brand-icon channel-link" href="https://t.me/lesson_play" target="_blank" rel="noopener noreferrer" aria-label="Открыть Telegram-канал Урок на PLAY" title="Урок на PLAY · Telegram"><span aria-hidden="true">PLAY</span><img src="https://t.me/i/userpic/320/lesson_play.jpg" alt="Фото канала Урок на PLAY" referrerpolicy="no-referrer" onerror="this.hidden=true"></a><div><h1>Волшебный сад чисел · 4 класс</h1></div></div>
+<div id="score" class="score" role="img" aria-label="Собрано 0 из 11 звёзд"></div>
+<button id="soundToggle" class="quiet" type="button" aria-pressed="false">♫ Включить звук</button>
+<button id="restart" class="quiet" type="button">↻ Начать заново</button>
+</header>
+<nav class="grade-nav" aria-label="Выбрать класс"><a href="../">1 класс</a><a href="../2-class/">2 класс</a><a href="../3-class/">3 класс</a><a href="./" aria-current="page">4 класс</a></nav>
+<main class="panel" aria-label="Математический диктант">
+<section id="quiz">
+<div class="panel-top"><span id="counter" class="eyebrow">Задание 01 / 11</span><span class="badge">4 КЛАСС</span></div>
+<div class="progress" role="progressbar" aria-label="Пройдено заданий" aria-valuemin="0" aria-valuemax="11" aria-valuenow="0"><span id="progressFill"></span></div>
+<h2 id="questionText" class="question-text"></h2>
+<button id="listen" class="listen" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg><span>Послушать</span></button>
+<p class="instruction">Нажми «Послушать», послушай задание и запиши ответ цифрами.</p>
+<form id="answerForm" autocomplete="off"><label for="answer">Твой ответ</label><input id="answer" type="text" inputmode="decimal" placeholder="Ответ цифрами" aria-describedby="answerHint feedback" spellcheck="false"><p id="answerHint" class="hint">Несколько чисел пиши через пробел или запятую.</p><button id="check" class="primary" type="submit">Проверить <span aria-hidden="true">→</span></button></form>
+<p id="feedback" class="feedback" role="status" aria-live="polite">Каждое открытие — новая звезда.</p>
+</section>
+<section id="victory" hidden aria-labelledby="winTitle"><div class="eyebrow">Все открытия собраны · 11 / 11</div><div class="trophy" aria-hidden="true">✦ ✦ ✦</div><h2 id="winTitle" tabindex="-1">ПОЗДРАВЛЯЕМ!</h2><p class="win-text">Ты прошёл все испытания и собрал одиннадцать звёзд!</p><button id="playAgain" class="primary" type="button">Играть снова ↻</button></section>
+<div class="footer"><span class="dot"></span> В САДУ РАСТУТ МАЛЕНЬКИЕ ОТКРЫТИЯ</div>
+</main>
+<script>
+'use strict';
+const questions = [
+  {
+    "question": "Найди произведение чисел 63 и 80.",
+    "answers": [
+      "5040"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "На шахматной доске 64 клетки. Какую долю доски составляет одна клетка?",
+    "answers": [
+      "1/64"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Какую долю суток составляет один час? Запиши дробью.",
+    "answers": [
+      "1/24"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Найди разность чисел 859 и 407.",
+    "answers": [
+      "452"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Арбуз весит 8 килограммов. Сколько весит половина арбуза?",
+    "answers": [
+      "4"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Найди сумму чисел 543 и 215.",
+    "answers": [
+      "758"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Яблоко весит 400 граммов. Сколько весит одна пятая часть яблока?",
+    "answers": [
+      "80"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Четверть площади садового участка составляет 200 квадратных метров. Чему равна площадь всего участка?",
+    "answers": [
+      "800"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Седьмая часть учеников класса — 4 человека. Сколько всего учеников в классе?",
+    "answers": [
+      "28"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Найди частное чисел 225 и 5.",
+    "answers": [
+      "45"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "question": "Велосипедист едет со скоростью 15 километров в час. Какое расстояние он проедет за 3 часа?",
+    "answers": [
+      "45"
+    ],
+    "correctIndex": 0
+  }
+];
+const $=id=>document.getElementById(id);
+const welcome=$('videoWelcome'),success=$('videoSuccess'),oops=$('videoOops');
+const answer=$('answer'),check=$('check'),listen=$('listen'),feedback=$('feedback');
+let currentQuestion=0,stars=0,isLocked=false,generation=0,reactionCleanup=null,speechGeneration=0;
+let soundEnabled=true,welcomeSoundEnabled=false,isSpeaking=false,questionAudio=null;
+function applySound(){welcome.muted=!welcomeSoundEnabled||!soundEnabled||isSpeaking;success.muted=!soundEnabled;oops.muted=!soundEnabled;}
+$('soundToggle').addEventListener('click',()=>{
+ if(!welcomeSoundEnabled){welcomeSoundEnabled=true;soundEnabled=true;}else soundEnabled=!soundEnabled;
+ applySound();$('soundToggle').textContent=soundEnabled?'♫ Выключить звук':'♫ Включить звук';$('soundToggle').setAttribute('aria-pressed',String(soundEnabled));
+ if(!isLocked)welcome.play().catch(()=>{});
+});
+applySound();
+function sayStatus(text,error=false){feedback.textContent=text;feedback.classList.toggle('error',error);}
+function cancelSpeech(){
+ speechGeneration++;
+ if('speechSynthesis' in window)window.speechSynthesis.cancel();
+ if(questionAudio){questionAudio.onended=null;questionAudio.onerror=null;questionAudio.pause();questionAudio=null;}
+ isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать';
+}
+function unlockInterface(){isLocked=false;answer.disabled=false;check.disabled=false;listen.disabled=false;check.classList.remove('correct','wrong');check.innerHTML='Проверить <span aria-hidden="true">→</span>';}
+function starMarkup(index,earned){
+ const id='starMetal'+index;
+ const points='50,3 61,35 96,36 69,57 78,91 50,71 22,91 31,57 4,36 39,35';
+ const facets=[['50,3 61,35 50,49','#fff7ce','#f5fff0'],['61,35 96,36 50,49','#ffdc69','#c0d4bc'],['96,36 69,57 50,49','#d8951c','#718e78'],['69,57 78,91 50,49','#a9600b','#45644e'],['78,91 50,71 50,49','#e8a92c','#8da58c'],['50,71 22,91 50,49','#ffc848','#b7cbb0'],['22,91 31,57 50,49','#b87913','#55745c'],['31,57 4,36 50,49','#ffe69a','#d6e7cd'],['4,36 39,35 50,49','#fff6c4','#edf8e4'],['39,35 50,3 50,49','#ffdf72','#aec7a9']];
+ return '<svg viewBox="0 0 100 104" aria-hidden="true" focusable="false"><defs><linearGradient id="'+id+'" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="'+(earned?'#e9ac31':'#8da58d')+'"/><stop offset="1" stop-color="'+(earned?'#75400b':'#304c37')+'"/></linearGradient></defs><polygon points="'+points+'" transform="translate(0 7)" fill="url(#'+id+')" stroke="'+(earned?'#8a510d':'#3d5a43')+'" stroke-width="3" stroke-linejoin="round"/><polygon points="'+points+'" fill="'+(earned?'#efb737':'#a0b99b')+'"/>'+facets.map(f=>'<polygon points="'+f[0]+'" fill="'+f[earned?1:2]+'"/>').join('')+'<polygon points="'+points+'" fill="none" stroke="'+(earned?'#fff1ac':'#d5e7cc')+'" stroke-width="1.5" stroke-linejoin="round"/><path d="M50 5 50 49 24 88M50 49 94 36" fill="none" stroke="'+(earned?'#fff6ce':'#ebf8e5')+'" stroke-opacity=".65" stroke-width="1.2"/><ellipse cx="44" cy="29" rx="3" ry="9" fill="white" opacity=".55" transform="rotate(18 44 29)"/></svg>';
+}
+function updateScore(){ $('score').innerHTML=questions.map((_,i)=>'<span class="star '+(i<stars?'earned':'')+'" aria-hidden="true">'+starMarkup(i,i<stars)+'</span>').join('');$('score').setAttribute('aria-label',`Собрано ${stars} из ${questions.length} звёзд`);$('progressFill').style.width=(stars/questions.length*100)+'%';document.querySelector('.progress').setAttribute('aria-valuenow',stars);}
+function showWelcome(){applySound();[success,oops].forEach(v=>{v.pause();v.classList.remove('active');try{v.currentTime=0;}catch{}});welcome.play().catch(()=>{});}
+function renderQuestion(focus=false){$('quiz').hidden=false;$('victory').hidden=true;$('counter').textContent=`Задание ${String(currentQuestion+1).padStart(2,'0')} / ${String(questions.length).padStart(2,'0')}`;$('questionText').textContent=questions[currentQuestion].question;$('answerHint').textContent=[1,2].includes(currentQuestion)?'Запиши дробь через косую черту: числитель/знаменатель.':currentQuestion===4?'Запиши только число килограммов.':currentQuestion===6?'Запиши только число граммов.':currentQuestion===7?'Запиши только число квадратных метров.':currentQuestion===10?'Запиши только число километров.':'Запиши ответ цифрами.';answer.inputMode=[1,2].includes(currentQuestion)?'text':'decimal';answer.value='';sayStatus('Каждое открытие — новая звезда.');unlockInterface();if(focus)answer.focus({preventScroll:true});}
+function finishGame(){$('quiz').hidden=true;$('victory').hidden=false;unlockInterface();$('winTitle').focus({preventScroll:true});}
+function playReaction(video,onComplete){
+ const token=generation;let completed=false,watchdog;
+ function cleanup(){clearTimeout(watchdog);video.removeEventListener('ended',done);video.removeEventListener('error',failed);video.removeEventListener('loadedmetadata',armWatchdog);if(reactionCleanup===cleanup)reactionCleanup=null;}
+ function done(){if(completed||token!==generation)return;completed=true;cleanup();showWelcome();onComplete();}
+ function failed(){done();}
+ function armWatchdog(){clearTimeout(watchdog);const duration=Number.isFinite(video.duration)&&video.duration>0?video.duration:15;watchdog=setTimeout(done,(duration+5)*1000);}
+ reactionCleanup=cleanup;video.addEventListener('ended',done);video.addEventListener('error',failed);video.addEventListener('loadedmetadata',armWatchdog);showWelcome();video.classList.add('active');welcome.muted=true;armWatchdog();
+ try{video.currentTime=0;const playing=video.play();if(playing)playing.catch(failed);}catch{failed();}
+}
+$('answerForm').addEventListener('submit',event=>{
+ event.preventDefault();if(isLocked||currentQuestion>=questions.length)return;
+ let normalized=answer.value.replace(/[,，\s]+/g,' ').trim();
+ if([1,2].includes(currentQuestion))normalized=normalized.replace(/\s*[\/⁄]\s*/g,'/');
+ else if(/^\d+(?: \d+)*$/.test(normalized))normalized=normalized.replace(/ /g,'');
+ if(!normalized){sayStatus('Сначала запиши свой ответ цифрами.',true);answer.focus();return;}
+ cancelSpeech();isLocked=true;answer.disabled=true;check.disabled=true;listen.disabled=true;
+ const q=questions[currentQuestion];const correct=q.answers.indexOf(normalized)===q.correctIndex;
+ check.classList.add(correct?'correct':'wrong');check.textContent=correct?'Верно! +1 звезда':'Попробуем ещё раз';
+ if(correct){stars++;updateScore();sayStatus('Отлично! Ещё одно открытие!');}
+ else sayStatus('Упс! Попробуй еще раз!',true);
+ playReaction(correct?success:oops,()=>{if(correct){currentQuestion++;if(currentQuestion===questions.length)finishGame();else renderQuestion(true);}else{unlockInterface();answer.focus({preventScroll:true});answer.select();}});
+});
+listen.addEventListener('click',()=>{
+ if(isLocked)return;
+ if(!('speechSynthesis' in window)||!('SpeechSynthesisUtterance' in window)){sayStatus('Озвучивание недоступно в этом браузере. Задание: '+questions[currentQuestion].question);return;}
+ cancelSpeech();const token=speechGeneration;const utterance=new SpeechSynthesisUtterance(questions[currentQuestion].question);utterance.lang='ru-RU';utterance.rate=.83;
+ const voice=window.speechSynthesis.getVoices().find(v=>/^ru(?:-|_)/i.test(v.lang));if(voice)utterance.voice=voice;
+ utterance.onend=()=>{if(token===speechGeneration){isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать ещё раз';}};
+ utterance.onerror=event=>{if(token!==speechGeneration||event.error==='canceled'||event.error==='interrupted')return;isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать ещё раз';sayStatus('Не удалось озвучить. Задание: '+questions[currentQuestion].question);};
+ listen.querySelector('span').textContent='Повторить задание';sayStatus('Слушай внимательно. Кнопка повторит задание.');isSpeaking=true;applySound();window.speechSynthesis.speak(utterance);
+});
+function restart(){generation++;if(reactionCleanup)reactionCleanup();cancelSpeech();showWelcome();currentQuestion=0;stars=0;updateScore();renderQuestion();}
+$('restart').addEventListener('click',restart);$('playAgain').addEventListener('click',restart);
+welcome.addEventListener('error',()=>sayStatus('Фоновое видео недоступно. Диктант продолжает работать.'));
+restart();
+</script>
+</body>
+</html>
