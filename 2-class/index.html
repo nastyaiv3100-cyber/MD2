@@ -127,6 +127,13 @@ header .score{
 .panel .primary:hover{background-color:#efffe733}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.panel{background:rgba(28,57,38,.94)}header .score,.quiet{background:rgba(28,57,38,.92)}}
 @media(max-width:650px){.panel{border-radius:24px}}
+
+.grade-nav{position:fixed;top:100px;left:32px;z-index:4;display:flex;gap:7px;padding:5px;border:1px solid #efffe066;border-radius:18px;background:#18372966;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.grade-nav a{padding:8px 14px;border-radius:12px;color:#f5ffe9;text-decoration:none;font-size:13px;font-weight:700}
+.grade-nav a[aria-current="page"]{background:linear-gradient(135deg,#eeffd7d9,#b3d993bd);color:#203d29;box-shadow:inset 0 1px #ffffffaa}
+.grade-nav a:focus-visible{outline:3px solid #eff4b3;outline-offset:2px}
+@media(max-width:650px){.grade-nav{top:155px;left:14px}.grade-nav a{font-size:11px;padding:6px 11px}.brand h1{font-size:13px}.panel{max-height:calc(100svh - 215px)}}
+@media(max-height:560px) and (max-width:650px){.grade-nav{position:absolute}.panel{top:210px;max-height:none}}
 </style>
 </head>
 <body>
@@ -136,11 +143,12 @@ header .score{
 <video id="videoOops" class="reaction" src="../oops.mp4" muted playsinline preload="auto"></video>
 </div><div class="veil"></div>
 <header>
-<div class="brand"><a class="brand-icon channel-link" href="https://t.me/lesson_play" target="_blank" rel="noopener noreferrer" aria-label="Открыть Telegram-канал Урок на PLAY" title="Урок на PLAY · Telegram"><span aria-hidden="true">PLAY</span><img src="https://t.me/i/userpic/320/lesson_play.jpg" alt="Фото канала Урок на PLAY" referrerpolicy="no-referrer" onerror="this.hidden=true"></a><div><h1>Волшебный сад чисел</h1></div></div>
+<div class="brand"><a class="brand-icon channel-link" href="https://t.me/lesson_play" target="_blank" rel="noopener noreferrer" aria-label="Открыть Telegram-канал Урок на PLAY" title="Урок на PLAY · Telegram"><span aria-hidden="true">PLAY</span><img src="https://t.me/i/userpic/320/lesson_play.jpg" alt="Фото канала Урок на PLAY" referrerpolicy="no-referrer" onerror="this.hidden=true"></a><div><h1>Волшебный сад чисел · 2 класс</h1></div></div>
 <div id="score" class="score" role="img" aria-label="Собрано 0 из 10 звёзд"></div>
 <button id="soundToggle" class="quiet" type="button" aria-pressed="false">♫ Включить звук</button>
 <button id="restart" class="quiet" type="button">↻ Начать заново</button>
 </header>
+<nav class="grade-nav" aria-label="Выбрать класс"><a href="../">1 класс</a><a href="./" aria-current="page">2 класс</a></nav>
 <main class="panel" aria-label="Математический диктант">
 <section id="quiz">
 <div class="panel-top"><span id="counter" class="eyebrow">Задание 01 / 10</span><span class="badge">2 КЛАСС</span></div>
@@ -280,12 +288,17 @@ $('answerForm').addEventListener('submit',event=>{
 });
 listen.addEventListener('click',()=>{
  if(isLocked)return;
- if(!('speechSynthesis' in window)||!('SpeechSynthesisUtterance' in window)){sayStatus('Озвучивание недоступно в этом браузере. Задание: '+questions[currentQuestion].question);return;}
- cancelSpeech();const token=speechGeneration;const utterance=new SpeechSynthesisUtterance(questions[currentQuestion].question);utterance.lang='ru-RU';utterance.rate=.83;
- const voice=window.speechSynthesis.getVoices().find(v=>/^ru(?:-|_)/i.test(v.lang));if(voice)utterance.voice=voice;
- utterance.onend=()=>{if(token===speechGeneration){isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать ещё раз';}};
- utterance.onerror=event=>{if(token!==speechGeneration||event.error==='canceled'||event.error==='interrupted')return;isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать ещё раз';sayStatus('Не удалось озвучить. Задание: '+questions[currentQuestion].question);};
- listen.querySelector('span').textContent='Повторить задание';sayStatus('Слушай внимательно. Кнопка повторит задание.');isSpeaking=true;applySound();window.speechSynthesis.speak(utterance);
+ cancelSpeech();const token=speechGeneration;
+ const audio=new Audio((currentQuestion+1)+'.MP3');questionAudio=audio;
+ function complete(failed=false){
+  if(token!==speechGeneration||questionAudio!==audio)return;
+  audio.onended=null;audio.onerror=null;audio.pause();questionAudio=null;isSpeaking=false;applySound();
+  listen.querySelector('span').textContent='Послушать ещё раз';
+  if(failed)sayStatus('Не удалось воспроизвести запись. Прочитай задание или нажми «Послушать» ещё раз.',true);
+ }
+ audio.onended=()=>complete();audio.onerror=()=>complete(true);
+ listen.querySelector('span').textContent='Повторить задание';sayStatus('Слушай внимательно. Кнопка повторит запись с начала.');
+ isSpeaking=true;applySound();audio.play().catch(()=>complete(true));
 });
 function restart(){generation++;if(reactionCleanup)reactionCleanup();cancelSpeech();showWelcome();currentQuestion=0;stars=0;updateScore();renderQuestion();}
 $('restart').addEventListener('click',restart);$('playAgain').addEventListener('click',restart);
