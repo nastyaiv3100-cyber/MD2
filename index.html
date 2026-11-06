@@ -143,7 +143,7 @@ header .score{
 </header>
 <main class="panel" aria-label="Математический диктант">
 <section id="quiz">
-<div class="panel-top"><span id="counter" class="eyebrow">Задание 01 / 10</span><span class="badge">1 КЛАСС</span></div>
+<div class="panel-top"><span id="counter" class="eyebrow">Задание 01 / 10</span><span class="badge">2 КЛАСС</span></div>
 <div class="progress" role="progressbar" aria-label="Пройдено заданий" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><span id="progressFill"></span></div>
 <h2 id="questionText" class="question-text"></h2>
 <button id="listen" class="listen" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg><span>Послушать</span></button>
@@ -158,72 +158,72 @@ header .score{
 'use strict';
 const questions = [
   {
-    "question": "Число, предыдущее числу 8, уменьши на 2 единицы.",
+    "question": "Запиши цифрами число: шестьсот двадцать семь.",
     "answers": [
-      "5"
+      "627"
     ],
     "correctIndex": 0
   },
   {
-    "question": "Число, последующее за числом 6, увеличь на 3 единицы.",
+    "question": "Запиши число, в котором 8 сотен и 6 единиц.",
     "answers": [
-      "10"
+      "806"
     ],
     "correctIndex": 0
   },
   {
-    "question": "На сколько единиц число 6 меньше числа 9?",
+    "question": "Найди сумму чисел 444 и 40.",
     "answers": [
-      "3"
+      "484"
     ],
     "correctIndex": 0
   },
   {
-    "question": "На сколько единиц число 7 больше числа 5?",
+    "question": "Уменьши число 454 на 400.",
     "answers": [
-      "2"
+      "54"
     ],
     "correctIndex": 0
   },
   {
-    "question": "Запиши все числа меньше числа 9, но больше числа 5.",
+    "question": "На сколько число 667 больше числа 404?",
     "answers": [
-      "6 7 8"
+      "263"
     ],
     "correctIndex": 0
   },
   {
-    "question": "Из какого числа нужно вычесть число 2, чтобы получить число 7?",
+    "question": "Первое слагаемое — 205, второе — 123. Найди сумму.",
     "answers": [
-      "9"
+      "328"
     ],
     "correctIndex": 0
   },
   {
-    "question": "К какому числу нужно прибавить число 3, чтобы получить число 7?",
+    "question": "Вырази в сантиметрах: 2 метра 3 дециметра.",
     "answers": [
-      "4"
+      "230"
     ],
     "correctIndex": 0
   },
   {
-    "question": "В корзине лежало 4 моркови, 3 репки и 2 яблока. Сколько всего штук овощей лежало в корзине?",
+    "question": "Вырази в дециметрах и сантиметрах: 268 сантиметров.",
     "answers": [
-      "7"
+      "26 8"
     ],
     "correctIndex": 0
   },
   {
-    "question": "Число 10 уменьши на 6.",
+    "question": "К неизвестному числу прибавили 502 и получили 934. Запиши неизвестное число.",
     "answers": [
-      "4"
+      "432"
     ],
     "correctIndex": 0
   },
   {
-    "question": "Число 4 увеличь на 5.",
+    "question": "Длина прямоугольника — 7 сантиметров, ширина — 2 сантиметра. Найди его периметр.",
     "answers": [
-      "9"
+      "18"
     ],
     "correctIndex": 0
   }
@@ -243,6 +243,7 @@ applySound();
 function sayStatus(text,error=false){feedback.textContent=text;feedback.classList.toggle('error',error);}
 function cancelSpeech(){
  speechGeneration++;
+ if('speechSynthesis' in window)window.speechSynthesis.cancel();
  if(questionAudio){questionAudio.onended=null;questionAudio.onerror=null;questionAudio.pause();questionAudio=null;}
  isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать';
 }
@@ -255,7 +256,7 @@ function starMarkup(index,earned){
 }
 function updateScore(){ $('score').innerHTML=questions.map((_,i)=>'<span class="star '+(i<stars?'earned':'')+'" aria-hidden="true">'+starMarkup(i,i<stars)+'</span>').join('');$('score').setAttribute('aria-label',`Собрано ${stars} из ${questions.length} звёзд`);$('progressFill').style.width=(stars/questions.length*100)+'%';document.querySelector('.progress').setAttribute('aria-valuenow',stars);}
 function showWelcome(){applySound();[success,oops].forEach(v=>{v.pause();v.classList.remove('active');try{v.currentTime=0;}catch{}});welcome.play().catch(()=>{});}
-function renderQuestion(focus=false){$('quiz').hidden=false;$('victory').hidden=true;$('counter').textContent=`Задание ${String(currentQuestion+1).padStart(2,'0')} / ${String(questions.length).padStart(2,'0')}`;$('questionText').textContent=questions[currentQuestion].question;answer.value='';sayStatus('Каждое открытие — новая звезда.');unlockInterface();if(focus)answer.focus({preventScroll:true});}
+function renderQuestion(focus=false){$('quiz').hidden=false;$('victory').hidden=true;$('counter').textContent=`Задание ${String(currentQuestion+1).padStart(2,'0')} / ${String(questions.length).padStart(2,'0')}`;$('questionText').textContent=questions[currentQuestion].question;$('answerHint').textContent=currentQuestion===7?'Введи два числа через пробел: сначала дециметры, затем сантиметры.':currentQuestion===6?'Запиши только число сантиметров.':currentQuestion===9?'Запиши только число сантиметров.':'Запиши ответ цифрами.';answer.value='';sayStatus('Каждое открытие — новая звезда.');unlockInterface();if(focus)answer.focus({preventScroll:true});}
 function finishGame(){$('quiz').hidden=true;$('victory').hidden=false;unlockInterface();$('winTitle').focus({preventScroll:true});}
 function playReaction(video,onComplete){
  const token=generation;let completed=false,watchdog;
@@ -279,17 +280,12 @@ $('answerForm').addEventListener('submit',event=>{
 });
 listen.addEventListener('click',()=>{
  if(isLocked)return;
- cancelSpeech();const token=speechGeneration;
- const audio=new Audio((currentQuestion+1)+'.MP3');questionAudio=audio;
- function complete(failed=false){
-  if(token!==speechGeneration||questionAudio!==audio)return;
-  audio.onended=null;audio.onerror=null;audio.pause();questionAudio=null;isSpeaking=false;applySound();
-  listen.querySelector('span').textContent='Послушать ещё раз';
-  if(failed)sayStatus('Не удалось воспроизвести запись. Прочитай задание или нажми «Послушать» ещё раз.',true);
- }
- audio.onended=()=>complete();audio.onerror=()=>complete(true);
- listen.querySelector('span').textContent='Повторить задание';sayStatus('Слушай внимательно. Кнопка повторит запись с начала.');
- isSpeaking=true;applySound();audio.play().catch(()=>complete(true));
+ if(!('speechSynthesis' in window)||!('SpeechSynthesisUtterance' in window)){sayStatus('Озвучивание недоступно в этом браузере. Задание: '+questions[currentQuestion].question);return;}
+ cancelSpeech();const token=speechGeneration;const utterance=new SpeechSynthesisUtterance(questions[currentQuestion].question);utterance.lang='ru-RU';utterance.rate=.83;
+ const voice=window.speechSynthesis.getVoices().find(v=>/^ru(?:-|_)/i.test(v.lang));if(voice)utterance.voice=voice;
+ utterance.onend=()=>{if(token===speechGeneration){isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать ещё раз';}};
+ utterance.onerror=event=>{if(token!==speechGeneration||event.error==='canceled'||event.error==='interrupted')return;isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать ещё раз';sayStatus('Не удалось озвучить. Задание: '+questions[currentQuestion].question);};
+ listen.querySelector('span').textContent='Повторить задание';sayStatus('Слушай внимательно. Кнопка повторит задание.');isSpeaking=true;applySound();window.speechSynthesis.speak(utterance);
 });
 function restart(){generation++;if(reactionCleanup)reactionCleanup();cancelSpeech();showWelcome();currentQuestion=0;stars=0;updateScore();renderQuestion();}
 $('restart').addEventListener('click',restart);$('playAgain').addEventListener('click',restart);
