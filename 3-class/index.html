@@ -290,12 +290,17 @@ $('answerForm').addEventListener('submit',event=>{
 });
 listen.addEventListener('click',()=>{
  if(isLocked)return;
- if(!('speechSynthesis' in window)||!('SpeechSynthesisUtterance' in window)){sayStatus('Озвучивание недоступно в этом браузере. Задание: '+questions[currentQuestion].question);return;}
- cancelSpeech();const token=speechGeneration;const utterance=new SpeechSynthesisUtterance(questions[currentQuestion].question);utterance.lang='ru-RU';utterance.rate=.83;
- const voice=window.speechSynthesis.getVoices().find(v=>/^ru(?:-|_)/i.test(v.lang));if(voice)utterance.voice=voice;
- utterance.onend=()=>{if(token===speechGeneration){isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать ещё раз';}};
- utterance.onerror=event=>{if(token!==speechGeneration||event.error==='canceled'||event.error==='interrupted')return;isSpeaking=false;applySound();listen.querySelector('span').textContent='Послушать ещё раз';sayStatus('Не удалось озвучить. Задание: '+questions[currentQuestion].question);};
- listen.querySelector('span').textContent='Повторить задание';sayStatus('Слушай внимательно. Кнопка повторит задание.');isSpeaking=true;applySound();window.speechSynthesis.speak(utterance);
+ cancelSpeech();const token=speechGeneration;
+ const audio=new Audio((currentQuestion+1)+'.MP3');questionAudio=audio;
+ function complete(failed=false){
+  if(token!==speechGeneration||questionAudio!==audio)return;
+  audio.onended=null;audio.onerror=null;audio.pause();questionAudio=null;isSpeaking=false;applySound();
+  listen.querySelector('span').textContent='Послушать ещё раз';
+  if(failed)sayStatus('Не удалось воспроизвести запись. Прочитай задание или нажми «Послушать» ещё раз.',true);
+ }
+ audio.onended=()=>complete();audio.onerror=()=>complete(true);
+ listen.querySelector('span').textContent='Повторить задание';sayStatus('Слушай внимательно. Кнопка повторит запись с начала.');
+ isSpeaking=true;applySound();audio.play().catch(()=>complete(true));
 });
 function restart(){generation++;if(reactionCleanup)reactionCleanup();cancelSpeech();showWelcome();currentQuestion=0;stars=0;updateScore();renderQuestion();}
 $('restart').addEventListener('click',restart);$('playAgain').addEventListener('click',restart);
